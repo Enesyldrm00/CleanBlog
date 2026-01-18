@@ -1,15 +1,25 @@
-const exprees = require("express");
-const app = exprees();
+const express = require('express');
+const ejs = require('ejs');
+const app = express();
+app.use(express.static('public'));
 
-app.get("/", (req, res) => {
-  const blog = {
-    id: 1,
-    title: "Blog title",
-    description: "Blog description",
-  };
-  res.send(blog);
+app.set('view engine', 'ejs');
+
+app.get('/', (req, res) => {
+  res.render('index');
 });
-const server = 3000;
-app.listen(server, () => {
-  console.log("sunucu başladı");
+app.get('/post', (req, res) => {
+  res.render('post');
+});
+app.get('/add_post', (req, res) => {
+  res.render('add_post');
+});
+
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
+const port = 3000;
+app.listen(port, () => {
+  console.log('sunucu başladı');
 });
