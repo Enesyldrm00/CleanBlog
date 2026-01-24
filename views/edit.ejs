@@ -4,54 +4,47 @@
 
    <%- include('partials/_navigation') -%>
 
-
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/post-bg.jpg')">
+  <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1><%= post.title %></h1>
-            <span class="meta">Posted by
-              <a href="#"><%= post.dateCreated %></a>
-              </span>
+          <div class="page-heading">
+            <h1>Edit The Post</h1>
+
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg- col-md-10 mx-auto">
-          <p><%= post.detail %></p>
-
-        </div>
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <form   method="POST" action="/post/<%= post._id %>?_method=PUT" class="tm-contact-form"  encType="application/x-www-form-urlencoded">
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Post Title</label>
+              <input type="text" class="form-control"  name="title"  placeholder="Name" value="<%= post.title %>" id="name" required data-validation-required-message="Please enter your name."required>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Post Detail</label>
+              <textarea type="text" rows="5" class="form-control" name="detail" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."required><%= post.detail %></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Update</button>
+        </form>
       </div>
     </div>
-  </article>
-<div class="tm-bg-gray tm-share-box text-center">
-  <a href="/post/edit/<%= post._id %>" class="btn btn-primary mb-3">
-    Update Details
-  </a>
-
-  <form method="POST" action="/post/<%= post._id %>?_method=DELETE"
-        onsubmit="return confirm('ARE YOU SURE?')">
-    <button class="btn btn-danger">
-      Delete Photo
-    </button>
-  </form>
-</div>
-
-
- 
-</div>
-
-						</div>
-
+  </div>
 
   <hr>
 
@@ -95,6 +88,10 @@
   <!-- Bootstrap core JavaScript -->
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="/js/jqBootstrapValidation.js"></script>
+  <script src="/js/contact_me.js"></script>
 
   <!-- Custom scripts for this template -->
   <script src="/js/clean-blog.min.js"></script>
